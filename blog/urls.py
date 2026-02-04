@@ -4,18 +4,13 @@ from . import views
 app_name = 'blog'
 
 urlpatterns = [
-    # Homepage
     path('', views.home_view, name='home'),
 
-    # View single post
-    path('post/<slug:slug>/', views.post_detail_view, name='post_detail'),
-
-    # Create new post
+    # IMPORTANT: fixed routes FIRST
     path('post/create/', views.post_create_view, name='post_create'),
 
-    # Edit post
+    # slug routes AFTER fixed routes
+    path('post/<slug:slug>/', views.post_detail_view, name='post_detail'),
     path('post/<slug:slug>/edit/', views.post_edit_view, name='post_edit'),
-
-    # Delete post
     path('post/<slug:slug>/delete/', views.post_delete_view, name='post_delete'),
 ]
