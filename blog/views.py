@@ -9,12 +9,19 @@ from .forms import PostForm, CommentForm
 
 
 def home_view(request):
-    """Homepage showing published posts"""
+    featured_post = Post.objects.filter(
+        status='published',
+        is_featured=True
+    ).select_related('author', 'category').first()
+
     posts = Post.objects.filter(
         status='published'
     ).select_related('author', 'category')
 
-    # Pagination
+    # remove featured from the grid
+    if featured_post:
+        posts = posts.exclude(id=featured_post.id)
+
     paginator = Paginator(posts, 10)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -22,11 +29,12 @@ def home_view(request):
     categories = Category.objects.all()
 
     context = {
+        'featured_post': featured_post,
         'page_obj': page_obj,
         'categories': categories,
     }
-
     return render(request, 'blog/home.html', context)
+
 
 
 def post_detail_view(request, slug):

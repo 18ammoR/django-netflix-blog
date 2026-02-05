@@ -54,6 +54,9 @@ class Post(models.Model):
         null=True
     )
 
+    is_featured = models.BooleanField(default=False)
+
+
     status = models.CharField(
         max_length=10,
         choices=STATUS_CHOICES,

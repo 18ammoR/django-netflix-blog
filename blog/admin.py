@@ -11,8 +11,8 @@ class CategoryAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ['title', 'author', 'category', 'status', 'created_at', 'views']
-    list_filter = ['status', 'category', 'created_at', 'author']
+    list_display = ['title', 'author', 'category', 'status','is_featured', 'created_at', 'views']
+    list_filter = ['status','is_featured', 'category', 'created_at', 'author']
     search_fields = ['title', 'content']
     prepopulated_fields = {'slug': ('title',)}
     date_hierarchy = 'created_at'

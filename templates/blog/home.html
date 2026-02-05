@@ -5,18 +5,23 @@
 
 <!-- Hero Banner -->
 {% if featured_post %}
-<div class="hero-banner" style="background-image: url('{{ featured_post.featured_image.url }}');">
-    <div class="hero-overlay"></div>
-    <div class="hero-content">
-        <h1 class="hero-title">{{ featured_post.title }}</h1>
-        <p class="hero-description">{{ featured_post.excerpt }}</p>
-        <div class="hero-buttons">
-            <a href="{% url 'blog:post_detail' featured_post.slug %}" class="btn-play">▶ Read Now</a>
-            <a href="{% url 'blog:post_detail' featured_post.slug %}" class="btn-info">ℹ More Info</a>
-        </div>
+  {% if featured_post.featured_image %}
+    <div class="hero-banner" style="background-image: url('{{ featured_post.featured_image.url }}');">
+  {% else %}
+    <div class="hero-banner" style="background-color: #111;">
+  {% endif %}
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+          <h1 class="hero-title">{{ featured_post.title }}</h1>
+          <p class="hero-description">{{ featured_post.excerpt }}</p>
+          <div class="hero-buttons">
+              <a href="{% url 'blog:post_detail' featured_post.slug %}" class="btn-play">▶ Read Now</a>
+              <a href="{% url 'blog:post_detail' featured_post.slug %}" class="btn-info">ℹ More Info</a>
+          </div>
+      </div>
     </div>
-</div>
 {% endif %}
+
 
 <!-- Posts Section -->
 <div class="posts-section">
