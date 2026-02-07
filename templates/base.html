@@ -11,7 +11,7 @@
     <!-- Navigation -->
     <nav class="navbar">
         <div style="display: flex; justify-content: space-between; align-items: center;">
-            <a href="{% url 'blog:home' %}" class="navbar-brand">NETFLIX</a>
+            <a href="{% url 'blog:home' %}" class="navbar-brand">FLOPFLIX</a>
             
             <ul class="nav-links">
                 <li><a href="{% url 'blog:home' %}">Home</a></li>
@@ -45,5 +45,8 @@
     <footer style="text-align: center; padding: 40px; color: #808080; border-top: 1px solid #2a2a2a;">
         <p>&copy; 2026 Netflix Blog. All rights reserved.</p>
     </footer>
+    {% load static %}
+    <script src="{% static 'js/main.js' %}"></script>
+
 </body>
 </html>

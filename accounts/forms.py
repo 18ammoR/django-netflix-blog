@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from .models import CustomUser
+from django.forms import ModelForm
 
 
 class RegisterForm(UserCreationForm):
@@ -47,3 +48,18 @@ class LoginForm(AuthenticationForm):
             'placeholder': 'Password'
         })
     )
+
+class ProfileForm(ModelForm):
+    class Meta:
+        model = CustomUser
+        fields = ['bio', 'profile_picture']
+        widgets = {
+            'bio': forms.Textarea(attrs={
+                'class': 'form-control',
+                'rows': 4,
+                'placeholder': 'Write something about yourself...'
+            }),
+            'profile_picture': forms.FileInput(attrs={
+                'class': 'form-control'
+            })
+        }
